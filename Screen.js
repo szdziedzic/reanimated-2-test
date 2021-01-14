@@ -6,11 +6,11 @@ import Animated, {
 } from 'react-native-reanimated';
 import {PanGestureHandler} from 'react-native-gesture-handler';
 import React from 'react';
-import {Dimensions, StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet, View} from 'react-native';
 
-export default function AnimatedStyleUpdateExample(props) {
-  const translateX = useSharedValue(0);
-  const translateY = useSharedValue(0);
+const BlockComponent = (props) => {
+  const translateX = useSharedValue(props.startX);
+  const translateY = useSharedValue(props.startY);
 
   const animatedStyles = useAnimatedStyle(() => {
     return {
@@ -29,8 +29,8 @@ export default function AnimatedStyleUpdateExample(props) {
       width: 80,
       height: 80,
       backgroundColor: 'black',
-      marginTop: 35,
-      marginBottom: 10,
+      marginTop: 0,
+      marginBottom: 0,
       marginRight: 0,
       marginLeft: 0,
     },
@@ -87,4 +87,15 @@ export default function AnimatedStyleUpdateExample(props) {
       <Animated.View style={[styles.box, animatedStyles]} />
     </PanGestureHandler>
   );
-}
+};
+
+const App = () => {
+  return (
+    <View>
+      <BlockComponent startX={0} startY={0} />
+      <BlockComponent startX={0} startY={10} />
+    </View>
+  );
+};
+
+export default App;
