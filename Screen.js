@@ -26,6 +26,7 @@ const BlockComponent = (props) => {
 
   const styles = StyleSheet.create({
     box: {
+      position: 'absolute',
       width: 80,
       height: 80,
       backgroundColor: 'black',
@@ -90,8 +91,14 @@ const BlockComponent = (props) => {
 };
 
 const App = () => {
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      flexDirection: 'column',
+    },
+  });
   return (
-    <View>
+    <View style={styles.container}>
       <BlockComponent startX={0} startY={0} />
       <BlockComponent startX={0} startY={10} />
     </View>
