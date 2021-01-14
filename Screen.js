@@ -15,8 +15,8 @@ const BlockComponent = (props) => {
   const animatedStyles = useAnimatedStyle(() => {
     return {
       transform: [
-        {translateX: translateX.value},
-        {translateY: translateY.value},
+        {translateX: withSpring(translateX.value)},
+        {translateY: withSpring(translateY.value)},
       ],
     };
   });
@@ -34,6 +34,7 @@ const BlockComponent = (props) => {
       marginBottom: 0,
       marginRight: 0,
       marginLeft: 0,
+      borderRadius: 12,
     },
   });
 
@@ -74,12 +75,9 @@ const BlockComponent = (props) => {
         return wantedY;
       };
 
-      translateX.value = withSpring(
-        fixXPosition(context.startX + event.translationX),
-      );
-      translateY.value = withSpring(
-        fixYPosition(context.startY + event.translationY),
-      );
+      translateX.value = fixXPosition(context.startX + event.translationX);
+
+      translateY.value = fixYPosition(context.startY + event.translationY);
     },
   });
 
@@ -100,7 +98,8 @@ const App = () => {
   return (
     <View style={styles.container}>
       <BlockComponent startX={0} startY={0} />
-      <BlockComponent startX={0} startY={10} />
+      <BlockComponent startX={0} startY={90} />
+      <BlockComponent startX={0} startY={180} />
     </View>
   );
 };
